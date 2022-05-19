@@ -253,7 +253,7 @@ export default {
         const left = minutes % time 
         pingtaiSpan = time
         // const nextTime = new Date(viDate.getTime() + (time - left)*60*1000 - viDate.getSeconds() )
-        state.timeDown = (time - left)*60 - viDate.getSeconds() - 1 //延迟一秒请求开奖
+        state.timeDown = (time - left)*60 - viDate.getSeconds() //延迟一秒请求开奖
       }
       
       startTimeDown()
@@ -286,7 +286,7 @@ export default {
       reqData["rows"] = "500"
       
       store.dispatch(url, reqData).then(data => {
-        console.log('query', JSON.stringify(data))
+        // console.log('query', JSON.stringify(data))
         let arr = data.result
         arr.sort((item1, item2)=> {
           return item2.issue - item1.issue
@@ -463,7 +463,8 @@ export default {
         }
       }
       console.log(result)
-      return max - result - 1
+      let res = max - result - 1
+      return res < 1?1: res
     }
 
     const calcYiLouFencheng = (j, n, val) => {
